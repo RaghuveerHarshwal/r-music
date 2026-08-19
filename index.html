@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Raghu Music</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="background-overlay"></div>
+
+    <div class="app">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="logo">
+                <span>R</span>
+
+                <div>
+                    <strong>Raghu</strong>
+                    <small>Music</small>
+                </div>
+            </div>
+
+            <div class="search-box">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search songs, artists..."
+                    autocomplete="off"
+                >
+
+                <button id="searchButton">
+                    Search
+                </button>
+
+            </div>
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                type="button"
+            >
+                ☰
+            </button>
+
+        </header>
+
+
+        <!-- SIDEBAR -->
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
+
+            <button
+                class="close-sidebar"
+                id="closeSidebar"
+                type="button"
+            >
+                ×
+            </button>
+
+            <div class="sidebar-title">
+                RAGHU MUSIC
+            </div>
+
+            <nav>
+
+                <button
+                    class="nav-item active"
+                    data-section="home"
+                    type="button"
+                >
+                    <span>⌂</span>
+                    Home
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-section="liked"
+                    type="button"
+                >
+                    <span>♡</span>
+                    Liked Songs
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-section="history"
+                    type="button"
+                >
+                    <span>◷</span>
+                    History
+                </button>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+
+            <section
+                class="hero"
+                id="homeSection"
+            >
+
+                <div class="hero-content">
+
+                    <p class="small-title">
+                        YOUR PERSONAL MUSIC SPACE
+                    </p>
+
+                    <h1>
+                        RAGHU<br>
+                        <span>MUSIC</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Search. Discover. Listen.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESULTS -->
+            <section class="results-section">
+
+                <div class="section-header">
+
+                    <h2 id="sectionTitle">
+                        Discover Music
+                    </h2>
+
+                    <span id="resultCount"></span>
+
+                </div>
+
+
+                <div
+                    class="results"
+                    id="results"
+                >
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ♪
+                        </div>
+
+                        <h3>
+                            Search for a song
+                        </h3>
+
+                        <p>
+                            Find your favorite music using YouTube.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!--
+            YOUTUBE PLAYER
+
+            Do NOT use display:none on this element.
+        -->
+        <div id="youtubePlayer"></div>
+
+
+        <!-- BOTTOM PLAYER -->
+        <div
+            class="player"
+            id="player"
+        >
+
+            <!-- SONG INFORMATION -->
+            <div class="player-song">
+
+                <img
+                    id="playerThumbnail"
+                    src="https://via.placeholder.com/80"
+                    alt="Album"
+                >
+
+                <div class="song-details">
+
+                    <h3 id="playerTitle">
+                        Nothing Playing
+                    </h3>
+
+                    <p id="playerArtist">
+                        Search for music
+                    </p>
+
+                </div>
+
+                <button
+                    class="like-player"
+                    id="playerLike"
+                    title="Like"
+                    type="button"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <!-- PLAYER CONTROLS -->
+            <div class="player-center">
+
+                <div class="progress-container">
+
+                    <span id="currentTime">
+                        0:00
+                    </span>
+
+                    <input
+                        type="range"
+                        id="progress"
+                        min="0"
+                        max="100"
+                        value="0"
+                    >
+
+                    <span id="duration">
+                        0:00
+                    </span>
+
+                </div>
+
+
+                <div class="controls">
+
+                    <button
+                        id="previousButton"
+                        title="Previous"
+                        type="button"
+                    >
+                        ⏮
+                    </button>
+
+                    <button
+                        id="playButton"
+                        class="play-button"
+                        title="Play"
+                        type="button"
+                    >
+                        ▶
+                    </button>
+
+                    <button
+                        id="nextButton"
+                        title="Next"
+                        type="button"
+                    >
+                        ⏭
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VOLUME -->
+            <div class="player-right">
+
+                <span>
+                    🔊
+                </span>
+
+                <input
+                    type="range"
+                    id="volume"
+                    min="0"
+                    max="100"
+                    value="80"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--
+        IMPORTANT:
+        YouTube IFrame API MUST load before script.js
+    -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
